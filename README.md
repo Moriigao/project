@@ -1,0 +1,2 @@
+# A music recommendation system based on Spring Boot.
+This project is an undergraduate graduation project. It is a traditional Spring Boot project and does not use any deep learning models or large language models. It only uses rule-based constraints of hybrid recommendation to recommend songs. The system includes the core functions of a music playback system and is more application-oriented rather than algorithm-oriented.
