@@ -1,0 +1,64 @@
+<template>
+  <b-carousel id="carousel" v-model="slide" :interval="4000" controls indicators background="#ababab" style="text-shadow: 1px 1px 2px #333" @sliding-start="onSlideStart" @sliding-end="onSlideEnd">
+    <b-carousel-slide v-for="(o, i) in list" :key="i">
+      <template #img>
+        <a v-if="o[vm.url]" target="_blank" :href="o[vm.url]">
+          <div class="swiper-imgs" :style="{backgroundImage: 'url(' + $fullUrl(o[vm.img]) + ')'}"></div>
+        </a>
+        <div v-else class="swiper-imgs" :style="{backgroundImage: 'url(' + $fullUrl(o[vm.img]) + ')'}"></div>
+      </template>
+    </b-carousel-slide>
+  </b-carousel>
+</template>
+
+<script>
+import mixin from "@/mixins/page.js";
+export default {
+  mixins: [mixin],
+  props: {
+    list: {
+      type: Array,
+      default: function () {
+        return [];
+      },
+    },
+    vm: {
+      type: Object,
+      default: function () {
+        return {
+          img: "img",
+          title: "title",
+          url: "url",
+        };
+      },
+    },
+  },
+  data() {
+    return {
+      slide: 0,
+      sliding: null,
+    };
+  },
+  methods: {
+    onSlideStart(slide) {
+      this.sliding = true;
+    },
+    onSlideEnd(slide) {
+      this.sliding = false;
+    },
+  },
+};
+</script>
+
+<style scoped>
+	.swiper-imgs{
+		background-repeat: no-repeat;
+		background-size: cover;
+		height: 18.75rem;
+	}
+	@media (max-width: 996px) {
+	    .swiper-imgs {
+	        height: 12.5rem;
+	    }
+	}
+</style>
